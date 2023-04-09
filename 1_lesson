@@ -1,0 +1,14 @@
+CREATE TABLE type_p (
+  type_id INT NOT NULL,
+  type_name VARCHAR(70) NOT NULL,
+  PRIMARY KEY (type_id)
+);
+
+
+INSERT INTO type_p (type_id, type_name) values (1, 'Tomat');
+INSERT INTO type_p (type_id, type_name) values (2, 'Milk');
+INSERT INTO type_p (type_id, type_name) values (3, 'Potat');
+INSERT INTO type_p (type_id, type_name) values (4, 'Coffee');
+
+SELECT type_id, type_name as 'Имя'
+FROM type_p;
