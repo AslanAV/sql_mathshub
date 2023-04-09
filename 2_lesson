@@ -1,0 +1,103 @@
+CREATE TABLE purchase (
+  vendorcode INT NOT NULL,
+  purdate DATETIME NOT NULL,
+  amount INT NOT NULL,
+  id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL
+);
+
+ALTER TABLE purchase
+ADD id INT AUTO_INCREMENT NOT NULL;
+
+INSERT INTO purchase (vendorcode, purdate, amount) values (123456, "2016-12-21 00:00:00.000", 2);
+INSERT INTO purchase (vendorcode, purdate, amount) values (123475, "2016-12-21 00:00:00.000", 4);
+INSERT INTO purchase (vendorcode, purdate, amount) values (456789, "2016-12-21 00:00:00.000", 5);
+INSERT INTO purchase (vendorcode, purdate, amount) values (898446, "2016-12-21 00:00:00.000", 8);
+INSERT INTO purchase (vendorcode, purdate, amount) values (789632, "2016-12-21 00:00:00.000", 6);
+
+SELECT *
+FROM purchase
+ORDER BY vendorcode;
+
+SELECT *
+FROM purchase
+ORDER BY vendorcode DESC;
+
+
+SELECT *
+FROM purchase
+LIMIT 3;
+
+
+SELECT *
+FROM purchase
+ORDER BY vendorcode
+LIMIT 3;
+
+
+SELECT *
+FROM type_p
+WHERE type_name = 'Tomat';
+
+SELECT *
+FROM type_p
+WHERE type_name <> 'Tomat';
+
+SELECT *
+FROM purchase
+WHERE vendorcode = 123456 and amount < 3;
+
+SELECT *
+FROM purchase
+WHERE vendorcode BETWEEN 123456 and 456789;
+
+SELECT *
+FROM purchase
+WHERE vendorcode in (123456, 456789);
+
+SELECT *
+FROM purchase
+WHERE vendorcode = 123456 or vendorcode = 456789;
+
+SELECT *
+FROM purchase
+WHERE vendorcode NOT IN (123456, 456789);
+
+SELECT 2+2;
+SELECT 2*2/2;
+
+SELECT * , AMOUNT * ID 'Стоимость'
+from purchase;
+
+SELECT COUNT(VENDORCODE) 'count vendorcode with 123456'
+from purchase
+where vendorcode = 123456;
+
+
+SELECT COUNT(DISTINCT VENDORCODE) 'count vendorcode with 123456'
+from purchase
+where vendorcode = 123456;
+
+SELECT SUM(VENDORCODE) 'count vendorcode with 123456'
+from purchase
+where vendorcode = 123456;
+
+SELECT sum(amount), vendorcode
+from purchase
+GROUP BY vendorcode;
+
+SELECT max(amount) as 'max_amount', vendorcode
+from purchase
+GROUP BY vendorcode
+ORDER BY max_amount
+LIMIT 1;
+
+SELECT vendorcode, id
+from purchase
+GROUP BY vendorcode
+HAVING count(vendorcode) > 2;
+
+
+SELECT vendorcode, id
+from purchase
+GROUP BY vendorcode
+HAVING count(vendorcode) > 2;
