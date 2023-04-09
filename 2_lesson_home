@@ -2,20 +2,20 @@ SELECT max(vendorcode) as 'max', id
 from purchase
 GROUP BY 'max';
 
-SELECT min(vendorcode) as 'max', id
+SELECT min(vendorcode) as 'min', id
 from purchase
 GROUP BY 'max';
 
-SELECT *, max(amount)
-from purchase
-GROUP BY id
-ORDER BY 'max_amount'
-LIMIT 3;
-
 SELECT *
 from purchase
+ORDER BY amount
+LIMIT 3;
+
+SELECT count(amount), vendorcode
+from purchase
 GROUP BY vendorcode
-HAVING count(vendorcode) > 2;
+order by count(amount) DESC
+limit 3;
 
 SELECT *
 from purchase
@@ -26,3 +26,8 @@ from purchase;
 
 SELECT count(DISTINCT vendorcode)
 from purchase;
+
+SELECT vendorcode, count(*)
+from Purchase
+group by vendorcode
+having count(*) > 2;
