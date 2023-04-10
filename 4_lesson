@@ -1,0 +1,88 @@
+SELECT  first_name, last_name, item, count(*) as count_oredrs
+FROM Customers
+JOIN orders ON Customers.customer_id = Orders.customer_id
+GROUP BY first_name;
+
+SELECT  first_name, last_name, item, (amount * 50) as price 
+FROM Customers
+JOIN orders ON Customers.customer_id = Orders.customer_id;
+
+SELECT customer_id
+FROM Customers
+UNION ALL
+SELECT order_id
+FROM Orders;
+
+SELECT 'ОЛЯ' as 'ИМЯ', 4 as 'ОЦЕНКА'
+union all
+SELECT 'ТАНЯ' as 'ИМЯ', 5 as 'ОЦЕНКА'
+union all
+SELECT 'КАТЯ' as 'ИМЯ', 3 as 'ОЦЕНКА';
+
+SELECT *
+FROM Customers
+WHERE customer_id >= 3
+UNION ALL
+SELECT *
+FROM Customers
+WHERE customer_id < 3
+ORDER BY customer_id;
+
+SELECT *
+FROM Customers
+WHERE customer_id >= 3
+UNION ALL
+SELECT *
+FROM Customers
+WHERE customer_id < 3
+LIMIT 3;
+
+(SELECT *
+FROM Customers
+WHERE customer_id >= 3
+LIMIT 1)
+UNION ALL
+(SELECT *
+FROM Customers
+WHERE customer_id < 3
+LIMIT 1);
+
+SELECT * 
+FROM (
+  SELECT *
+  FROM orders
+  ORDER BY customer_id
+  LIMIT 3
+) a
+WHERE a.amount < 400;
+
+
+SELECT * 
+FROM (
+  SELECT *
+  FROM orders
+  ORDER BY customer_id DESC
+  LIMIT 3
+) a
+UNION ALL
+SELECT * 
+FROM (
+  SELECT *
+  FROM orders
+  ORDER BY customer_id
+  LIMIT 3
+) b
+
+SELECT *
+FROM Customers
+WHERE customer_id NOT IN (SELECT customer_id
+                 FROM Orders
+                 WHERE amount < 400)
+                 
+
+
+
+WITH tabl1 as (SELECT * FROM Orders)
+
+SELECT * FROM tabl1
+WHERE amount > 300;
