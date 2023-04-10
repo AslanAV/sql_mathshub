@@ -1,0 +1,15 @@
+SELECT *
+FROM orders
+INNER JOIN Customers ON Orders.customer_id = Customers.customer_id;
+
+SELECT order_id, item, amount, first_name, last_name, age, country, status
+FROM orders
+INNER JOIN Customers ON Orders.customer_id = Customers.customer_id
+INNER JOIN Shippings ON Orders.customer_id = Shippings.customer
+where amount < 1000;
+
+
+SELECT first_name, last_name, age, country, status, count(*) count
+FROM Shippings
+INNER JOIN Customers ON Shippings.customer = Customers.customer_id
+group by first_name;
