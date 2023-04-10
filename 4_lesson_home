@@ -1,0 +1,26 @@
+SELECT *
+FROM (SELECT *
+     FROM Orders
+     WHERE amount < 400)
+WHERE item = 'Mousepad';
+
+
+
+SELECT *
+FROM Orders
+INNER JOIN Customers ON Customers.customer_id = Orders.customer_id
+WHERE country = 'USA'
+UNION ALL
+SELECT *
+FROM Orders
+INNER JOIN Customers ON Customers.customer_id = Orders.customer_id
+WHERE country <>'USA';
+
+
+WITH tabl1 as (SELECT *, count(amount) * 100 / 4 as persent 
+               FROM Orders
+               GROUP BY customer_id
+              )
+SELECT *
+FROM tabl1
+WHERE persent > 40;
